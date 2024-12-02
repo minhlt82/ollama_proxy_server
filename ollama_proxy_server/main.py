@@ -162,7 +162,7 @@ def main():
                         post_data_str = post_data.decode('utf-8')
                         post_data_dict = json.loads(post_data_str)
 
-                    response = requests.request(self.command, min_queued_server[1]['url'] + path, params=get_params, data=post_params, stream=post_data_dict.get("stream", False))
+                    response = requests.request(self.command, min_queued_server[1]['url'] + path, params=get_params, data=post_params, stream=post_data_dict.get("stream", True))
                     self._send_response(response)
                 except Exception as ex:
                     self.add_access_log_entry(event="gen_error", user=self.user, ip_address=client_ip, access="Authorized", server=min_queued_server[0], nb_queued_requests_on_server=que.qsize(), error=str(ex))
